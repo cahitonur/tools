@@ -15,10 +15,10 @@ yum -y install unixODBC-devel  # req'd by python package 'pyodbc'
 yum -y install sqlite sqlite-devel  # you will be sad if you don't install this before compiling python, and later need it.
 # Alias shasum to == sha1sum (will prevent some people's scripts from breaking)
 echo 'alias shasum="sha1sum"' >> $HOME/.bashrc
-# Install Python 2.7.4 (do NOT remove 2.6, by the way)
-wget --no-check-certificate http://www.python.org/ftp/python/2.7.4/Python-2.7.4.tar.bz2
-tar xf Python-2.7.4.tar.bz2
-cd Python-2.7.4
+# Install Python 2.7.5 (do NOT remove 2.6, by the way)
+wget --no-check-certificate http://www.python.org/ftp/python/2.7.4/Python-2.7.5.tar.bz2
+tar xf Python-2.7.5.tar.bz2
+cd Python-2.7.5
 ./configure --prefix=/usr/local
 make && make altinstall
 # Install virtualenv and virtualenvwrapper
