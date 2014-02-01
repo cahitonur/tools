@@ -2,6 +2,16 @@
 
 # Source: http://toomuchdata.com/2012/06/25/how-to-install-python-2-7-3-on-centos-6-2/
 
+# Update #
+##########
+
+yum update
+yum upgrade
+yum install wget
+curl -O http://python-distribute.org/distribute_setup.py
+python distribute_setup.py
+easy_install pip
+
 # Install stuff #
 #################
 
