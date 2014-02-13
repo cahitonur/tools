@@ -23,35 +23,24 @@ yum -y install mysql-devel  # req'd to use MySQL with python ('mysql-python' pac
 yum -y install libxml2-devel libxslt-devel  # req'd by python package 'lxml'
 yum -y install unixODBC-devel  # req'd by python package 'pyodbc'
 yum -y install sqlite sqlite-devel  # you will be sad if you don't install this before compiling python, and later need it.
+
 # Alias shasum to == sha1sum (will prevent some people's scripts from breaking)
 echo 'alias shasum="sha1sum"' >> $HOME/.bashrc
+
 # Install Python 2.7.5 (do NOT remove 2.6, by the way)
 wget --no-check-certificate http://www.python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2
 tar xf Python-2.7.5.tar.bz2
 cd Python-2.7.5
 ./configure --prefix=/usr/local
 make && make altinstall
+
 # Install virtualenv and virtualenvwrapper
-# Once you make your first virtualenv, you'll have 'pip' in there.
-# I got bitten by trying to install a system-wide (i.e. Python 2.6) version of pip;
-# it was clobbering my access to pip from within virtualenvs, and it was frustrating.
-# So these commands will install virtualenv/virtualenvwrapper the old school way,
-# just so you can make yourself a virtualenv, with pip, and then do everything Python-related
-# that you need to do, from in there.
 wget --no-check-certificate https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz#md5=07e09df0adfca0b2d487e39a4bf2270a
 tar -xvzf virtualenv-1.9.1.tar.gz
-python virtualenv-1.9.1/setup.py install
-wget --no-check-certificate https://pypi.python.org/packages/source/v/virtualenvwrapper/virtualenvwrapper-4.0.tar.gz#md5=78df3b40735e959479d9de34e4b8ba15
-tar -xvzf virtualenvwrapper-*
-python virtualenvwrapper-4.0/setup.py install
-echo 'export WORKON_HOME=~/Envs' >> .bashrc # Change this directory if you don't like it
-source $HOME/.bashrc
-mkdir -p $WORKON_HOME
-echo '. /usr/bin/virtualenvwrapper.sh' >> .bashrc
-source $HOME/.bashrc
+cd virtualenv-1.9.1
+python setup.py install
 
 # Done!
-# Now you can do: `mkvirtualenv foo --python=python2.7`
 
 # Extra stuff #
 ###############
@@ -69,3 +58,8 @@ sudo yum install http://pkgs.repoforge.org/trash-cli/trash-cli-0.11.2-1.el6.rf.i
 cd /tmp
 wget --no-check-certificate http://mirror-fpt-telecom.fpt.net/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
 rpm -ivh epel-release-6-8.noarch.rpm
+
+# NGINX
+
+yum -y install http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+yum install nginx
